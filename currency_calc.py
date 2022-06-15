@@ -4,19 +4,18 @@ import bank
 
 @app.route("/converter/", methods=["GET", "POST"])
 def converter():
-    items = []
-    for i in bank.rates:
-        items.append(i['code'])
+    codes = []
+    for rate in bank.rates:
+        codes.append(rate['code'])
     if request.method == 'GET':
-        return render_template("currency_calc.html", items=items)
+        return render_template("currency_calc.html", codes=codes)
     if request.method == 'POST':
         data = request.form
-        currency = data.get('currency')
+        code = data.get('code')
         amount = data.get('amount')
-        for i in bank.rates:
-            if currency == i['code']:
-                price = round(float(amount)*(i['ask']),2)
-                print(currency, price)
-        return render_template("currency_calc.html", items = items, price = price, amount = amount, currency = currency)
+        for rate in bank.rates:
+            if code == rate['code']:
+                price = round(float(amount)*(rate['ask']),2)
+        return render_template("currency_calc.html", codes = codes, price = price, amount = amount, code = code)
 
     

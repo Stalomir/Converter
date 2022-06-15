@@ -11,10 +11,10 @@
             
             <div id="block">
                 <h2>Currency Purchase Calculator</h2>
-                <label for="currency"><b>Currency code</b></label>
-                <select name="currency" id="currency">
-                {% for item in items %}
-                    <option value="{{item}}">{{item}}</option>
+                <label for="code"><b>Currency code</b></label>
+                <select name="code" id="code">
+                {% for code in codes %}
+                    <option value="{{code}}">{{code}}</option>
                 {% endfor %}
                 </select><br>
                 <label for="amount"><b>Amount</b></label>
@@ -23,7 +23,7 @@
             </div>    
             {% if price %}
             <div id="result">    
-                <p>{{amount}} {{currency}} will cost you {{price}} PLN as of today</p>
+                <p>{{amount}} {{code}} will cost you {{price}} PLN as of today</p>
             </div>
             {% endif %}
             
